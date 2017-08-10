@@ -13,22 +13,22 @@ import com.example.demo.models.Whisperer;
 import com.example.demo.models.Yeller;
 
 @Controller
-@RequestMapping({"/", "/HelloWorld"})
+@RequestMapping({ "/", "/HelloWorld" })
 public class HelloWorldController {
-	
+
 	private String title;
-	
+
 	public HelloWorldController() {
 		title = "Hello Java and Spring!";
 	}
-	
+
 	@GetMapping("")
 	public String index() {
 		return "helloworld/index";
 	}
-	
+
 	@GetMapping("message")
-	public ModelAndView message(@RequestParam(required=false, defaultValue="«silence»") String message) {
+	public ModelAndView message(@RequestParam(required = false, defaultValue = "«silence»") String message) {
 		ModelAndView mv = new ModelAndView("helloworld/message");
 		Yeller shout = new Yeller();
 		String result = shout.createAYell(message);
@@ -38,24 +38,14 @@ public class HelloWorldController {
 	}
 
 	@GetMapping("whisper")
-	public ModelAndView whisper(@RequestParam(required=false, defaultValue="«shhhhh»") String whisper) {
+	public ModelAndView whisper(@RequestParam(required = false, defaultValue = "«shhhhh»") String whisper) {
 		ModelAndView mv = new ModelAndView("helloworld/whisper");
 		Whisperer quiet = new Whisperer();
 		String result = quiet.createAWhisper(whisper);
 		mv.addObject("title", title);
 		mv.addObject("message", result);
-		return mv; 
-	
+		return mv;
+
 	}
-	
-	@PostMapping("adder")
-	public String addTwoNumbers(@RequestParam(name="left") int first, @RequestParam(name="right") double second, Model model) {
-		Adder adder = new Adder(first, second);
-		double result = adder.calculate();
-		
-		
-		model.addAttribute("sum", result);
-		return "helloworld/sum-result";
-	}
-	
+
 }
