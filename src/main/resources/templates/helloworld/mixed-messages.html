@@ -1,12 +1,16 @@
 <!doctype html>
 <html>
   <head>
+    <title>Something else</title>
     <link rel="stylesheet" href="/site.css">
   </head>
   <body>
-    <h1>Welcome to your First Project!</h1>
-    {{> helloworld/yeller-form }}
-    {{> helloworld/whisper-form }}
+    <h1>Houston, we have a message!</h1>
+    <p>
+      <b>Message:</b>
+      {{ output }}
+    </p>
     {{> helloworld/speech-form }}
+   
   </body>
 </html>
